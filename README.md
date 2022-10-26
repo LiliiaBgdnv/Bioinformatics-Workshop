@@ -1,15 +1,15 @@
 # Progect 1. “What causes antibiotic resistance?”. Alignment to reference, variant calling.
 
-##▶The first step. Prepare the workspace.
+## ▶The first step. Prepare the workspace.
 
-###Create a directory for practice assignments moved to it. 
+### Create a directory for practice assignments moved to it. 
 
 ```ruby
 mkdir practice/Progect_1
 cd practice/Progect_1
 ```
 
-###Download the raw data and annotation for the reference sequence of the parental E.coli strain
+### Download the raw data and annotation for the reference sequence of the parental E.coli strain
 
 ```ruby
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
@@ -17,7 +17,7 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_AS
 ```
 Also we need raw Illumina equencing reads. Just download two files from [here](https://figshare.com/articles/dataset/amp_res_2_fastq_zip/10006541/3). It is forward and reveerse reads.
 
-##▶The second step. Let's check our data.
+## ▶The second step. Let's check our data.
 
 If the download was successful we will have 4 files:
 
@@ -51,7 +51,7 @@ zcat amp_res_2.fastq.gz | wc -l
 ```
 In each file there are `1823504` lines, if we divide the number of lines by 4 (which is how many lines are allocated per read), we get `455876` reads.
 
-##▶The third step. Inspect raw sequencing data with fastqc. Filtering the reads.
+## ▶The third step. Inspect raw sequencing data with fastqc. Filtering the reads.
 
 **Let's download FASTQC.**
 
@@ -80,13 +80,13 @@ gzip -dk amp_res_2.fastq.gz
 ```
 `flag -d indicates that we need exactly unpack, flag -k  indicates that we need to save the compressed files`
 
-###Run fastqc
+### Run fastqc
 ```ruby
 fastqc -o . amp_res_1.fastq amp_res_2.fastq
 ```
 For each file we get a file with the extension `.html`. Check them out.![photo_2022-10-25_15-16-04.jpg]
 
-##▶The fourth step.  Filtering the reads.
+## ▶The fourth step.  Filtering the reads.
 
 **To filter the readings we will use [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).**
 
@@ -110,7 +110,7 @@ TrimmomaticPE
 - **SLIDINGWINDOW:...:...** (window width of number 1 when quality per base falls below number 2)
 >
 
-###Run Trimmomatic in paired end mode, with following parameters:
+### Run Trimmomatic in paired end mode, with following parameters:
 * Cut bases off the start of a read if quality below 20 (`LEADING`)
 * Cut bases off the end of a read if quality below 20. (`TRAILING`)
 * Trim reads using a sliding window approach, with window size 10 and average quality within the window 20. (`SLIDINGWINDOW:10:20`)
@@ -135,7 +135,7 @@ In each file there are `1785036` lines, if we divide the number of lines by 4 (w
 conda activate myenv_x86
 fastqc -o . amp_res_1_trimmed.fastq amp_res_2_trimmed.fastq
 ```
-##▶The five step. Aligning sequences to reference
+## ▶The five step. Aligning sequences to reference
 Unpack the archive with the reference E.coli sequence 
 ```ruby
 gzip -dk GCF_000005845.2_ASM584v2_genomic.fna.gz
@@ -190,19 +190,19 @@ Index the sorted file.
 ```ruby
 samtools index bwa_output_sorted.bam
 ```
-##▶The six step. Variant calling
+## ▶The six step. Variant calling
 *Let's look at our data on the reference genome and how many reads in our data have mutations and in which position. To do this, we're going to need [VarScan](http://dkoboldt.github.io/varscan/) (variant scanner).*
 
-###Make a sorted and indexed bam file
+### Make a sorted and indexed bam file
 ```ruby
 samtools mpileup -f GCF_000005845.2_ASM584v2_genomic.fna bwa_output_sorted.bam > my.mpileup
 ```
-###Installing and checking VarScan
+### Installing and checking VarScan
 ```ruby
 conda install -c bioconda varscan
 java -jar ~/miniconda3/share/varscan-2.4.4-1/VarScan.jar mpileup2snp -h
 ```
-###Let's run the program with a 50% threshold 
+### Let's run the program with a 50% threshold 
 The option --variants flag tells VarScan to output only positions that
 above our threshold, and the option --output-vcf 1 specifies that we want
 receive data in another kind of data format, called vcf (variant call format)
@@ -222,7 +222,7 @@ java -jar ~/miniconda3/share/varscan-2.4.4-1/VarScan.jar mpileup2snp my.mpileup 
 > - 1 were failed by the strand-filter
 > - 5 variant positions reported (5 SNP, 0 indel)
 
-##▶The seven step. Automatic SNP annotation
+## ▶The seven step. Automatic SNP annotation
 To avoid making unnecessary mistakes in the annotation, we will use the automatic tool for snp annotation. For this project we can use [SnpEff](http://pcingola.github.io/SnpEff/) (short for “SNP effect”).
 
 ### Installing SnpEff
@@ -254,7 +254,7 @@ snpEff build -genbank -v k12
 ```ruby
 snpEff ann k12 VarScan_results.vcf >  VarScan_results_annotated.vcf
 ```
-##▶The eight step. Visualization.😎
+## ▶The eight step. Visualization.😎
 Now it's time to see  with our eyes the data we processed and the mutations we found. Do it in the [IGV](https://software.broadinstitute.org/software/igv/).
 You may use online or localy on your computer.
 

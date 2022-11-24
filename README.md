@@ -36,7 +36,7 @@ The number of reads:
 | wc -l SRR292862_S2_L001_R1_001.fastq        | 20408164      | 5 102 041      |
 | wc -l SRR292862_S2_L001_R2_001.fastq        | 20408164      | 5 102 041      |
 
-### Run FastQC on all 6 of the week 3 fastq files. :shipit:
+### Run FastQC on all 6 fastq files. :shipit:
 
 ```ruby
 CONDA_SUBDIR=osx-64 conda create -n myenv_fastqc python=3.9
@@ -138,8 +138,8 @@ Find the 16S rRNA  in the results.
 ```ruby
 ./barrnap --quiet ~/IB/practice/Progect_3/processedData/spadesOutput2/scaffolds.fasta
 ```
-| NODE_184_length_223_cov_0.720238_ID_565088  | barrnap:0.9 | rRNA | 95      | 205     | 5.6e-18 | - | . | Name=5S_rRNA;product=5S   | ribosomal | RNA  |   |   |   |   |
-|---------------------------------------------|-------------|------|---------|---------|---------|---|---|---------------------------|-----------|------|---|---|---|---|
+| NODE_184_length_223_cov_0.720238_ID_565088  | barrnap:0.9 | rRNA | 95      | 205     | 5.6e-18 | - | . | Name=5S_rRNA;product=5S   | ribosomal | RNA  |   |  
+|---------------------------------------------|-------------|------|---------|---------|---------|---|---|---------------------------|-----------|------|---|
 | NODE_1_length_2815616_cov_74.3819_ID_564387 | barrnap:0.9 | rRNA | 322892  | 323002  | 2.2e-11 | - | . | Name=5S_rRNA;product=5S   | ribosomal | RNA  |   |   |   |   |
 | NODE_1_length_2815616_cov_74.3819_ID_564387 | barrnap:0.9 | rRNA | 323101  | 326001  | 0       | - | . | Name=23S_rRNA;product=23S | ribosomal | RNA  |   |   |   |   |
 | NODE_1_length_2815616_cov_74.3819_ID_564387 | barrnap:0.9 | rRNA | 326359  | 327896  | 0       | - | . | Name=16S_rRNA;product=16S | ribosomal | RNA  |   |   |   |   |

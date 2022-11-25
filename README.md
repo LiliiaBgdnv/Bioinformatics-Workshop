@@ -221,3 +221,28 @@ Open “Mauve” and select “File” → “Align with progressiveMauve...”.
 |                       |                     |                 | 
 
 
+## ResFinder result:
+| Reference genome |                       |                              |                         |                    |
+|------------------|-----------------------|------------------------------|-------------------------|--------------------|
+|                  | Antimicrobial         | Class                        | WGS-predicted phenotype | Genetic background |
+|                  | tetracycline          | tetracycline                 | Resistant               | tet(B)             |
+|                  | doxycycline           | tetracycline                 | Resistant               | tet(B)             |
+|                  | minocycline           | tetracycline                 | Resistant               | tet(B)             |
+| Assembled genome |                       |                              |                         |                    |
+|                  | cefepime              | beta-lactam                  | Resistant               | blaCTX-M-15        |
+|                  | ampicillin            | beta-lactam                  | Resistant               | blaTEM-1B          |
+|                  | cefotaxime            | beta-lactam                  | Resistant               | blaCTX-M-15        |
+|                  | sulfamethoxazole      | folate pathway antagonist    | Resistant               | sul1               |
+|                  | trimethoprim          | folate pathway antagonist    | Resistant               | dfrA7              |
+|                  | tetracycline          | tetracycline                 | Resistant               | tet(A)             |
+|                  | ceftazidime           | beta-lactam                  | Resistant               | blaCTX-M-15        |
+|                  | streptomycin          | aminoglycoside               | Resistant               | aph(6)-Id          |
+|                  | cephalothin           | beta-lactam                  | Resistant               | blaTEM-1B          |
+|                  | piperacillin          | beta-lactam                  | Resistant               | blaTEM-1B          |
+|                  | amoxicillin           | beta-lactam                  | Resistant               | blaTEM-1B          |
+|                  | ethidium bromide      | quaternary ammonium compound | Resistant               | qacE               |
+|                  | doxycycline           | tetracycline                 | Resistant               | tet(A)             |
+|                  | benzylkonium chloride | quaternary ammonium compound | Resistant               | qacE               |
+|                  |                       |                              |                         |                    |
+|                  | ticarcillin           | beta-lactam                  | Resistant               | blaTEM-1B          |
+|                  | chlorhexidine         | quaternary ammonium compound | Resistant               | qacE               |

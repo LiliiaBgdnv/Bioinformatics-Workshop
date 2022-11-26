@@ -66,12 +66,12 @@ Knowing the number of reads and average length, estimate the total number of bas
 **Genome_size = T/N**
 
 **(N: Depth of coverage, M: Kmer peak, K: Kmer-size, L: avg read length T: Total bases)**
-> - M: Kmer peak 62 
+> - M: Kmer peak 125 
 > - K: Kmer-size 31, 
-> - L: avg read length 90
-> - T: Total bases -- 5499346 * 90 = 494941140
-> - N = (M*L)/(L-K+1) = (62 * 90) / (90 - 31 + 1) = 93
-> - Genome_size = T/N = 494941140 / 93 = 5321947.7419354
+> - L: avg read length 32.57
+> - T: Total bases -- 5499346 * 32.57 = 179113699
+> - N = (M*L)/(L-K+1) = (125 * 32.57) / (32.57 - 31 + 1) = 35.96
+> - Genome_size = T/N = 4980915
 
 
 ## Step 3. Assembling E. coli X genome from paired reads. :shipit:

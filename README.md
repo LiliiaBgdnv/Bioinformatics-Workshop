@@ -2,6 +2,7 @@
 
 ## [Progect 1. What causes antibiotic resistance?”. Alignment to reference, variant calling.](https://github.com/LiliiaBgdnv/Bioinformatics-Workshop/tree/Project_1)
 The sequencing data were analyzed and the mutations responsible for giving E. coli antibiotic resistance properties were found. 
+
 **Skills:**
 > * FastQC
 > * Trimmimatic
@@ -14,6 +15,7 @@ The sequencing data were analyzed and the mutations responsible for giving E. co
 Afterwards, we identified the mutation that resulted in an amino acid substitution in a protein known as the epitope, which is recognized by
 antibodies. Therefore, SNP was found at position 307, epitope D. Proline was switched out for serine as a result of
 the mutation (P103S), which could have led to breakthrough infection.
+
 **Skills:**
 > * Deep sequence data
 > * awk one-liners
@@ -25,6 +27,7 @@ comparing it to another E.coli strain, determining which genes our strain has ac
 pathogenic. During the work we found out that strain E.coli X acquired the genes stxB and stxA from the
 phage, which led to the ability to secrete shiga toxin. We also found the bla_1 and bla_2 genes encoding
 beta-lactamase in the CTX-M family and TEM family, respectively.
+
 **Skills:**
 > * K-mer profile
 > * Assembling genome

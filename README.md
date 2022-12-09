@@ -93,7 +93,7 @@ Extract proteins of interest from the initial file:
 ```ruby
 xargs samtools faidx augustus.whole.aa < proteins_of_interest_no_duplications.txt > proteins_of_interest.faa
 ```
-## Result.
+## [Result.](output_protein_nucl.txt)
 
 ## Step 4. Localization prediction. :pig2:
 

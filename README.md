@@ -159,15 +159,15 @@ xargs samtools faidx augustus.whole.aa < proteins_of_interest_no_duplications.tx
 ## Step 6. [Pfam](https://www.ebi.ac.uk/Tools/hmmer/) prediction. :pig2:
 | Protein_id | Best blast hit | Relative organism                                    | Pham domains              | Probable localization (WoLF PSORT) | Probable localization (TargetP) |
 |------------|----------------|------------------------------------------------------|---------------------------|------------------------------------|---------------------------------|
-| g16368.t1  | 1.5e-33        | Penicillium italicum                                 | -                         | Nuclear                            | Other                           |
-| g10514.t1  | 1.8e-11        | Pseudogymnoascus sp. VKM F-4246                      | -                         | Nuclear                            | Other                           |
-| g14472.t1  | 2.9e-33        | Denticeps clupeoides                                 | -                         | Nuclear                            | Other                           |
+| g16368.t1  | 1e-05        | Penicillium italicum                                 | -                         | Nuclear                            | Other                           |
+| g10514.t1  | 4e-13        | Pseudogymnoascus sp. VKM F-4246                      | -                         | Nuclear                            | Other                           |
+| g14472.t1  | 0.0       | Denticeps clupeoides                                 | -                         | Nuclear                            | Other                           |
 | g16318.t1  | 0.0            | Owenia fusiformis                                    | -                         | Nuclear                            | Other                           |
 | g8312.t1   | 0.0            | Crassostrea gigas                                    | Clathrin                  | Nuclear                            | Other                           |
-| g15484.t1  | 1.2e-88        | Coptotermes formosanus                               | Vps51                     | Nuclear                            | Other                           |
-| g7861.t1   | 1.7e-38        | Penicillium italicum                                 | SNF2-rel_dom, HARP        | Nuclear                            | Other                           |
-| g11806.t1  | 3.3e-22        | Malassezia globosa (strain ATCC MYA-4612 / CBS 7966) | -                         | Nuclear                            | Other                           |
-| g11960.t1  | 4.6e-150       | Eumeta variegata                                     | zf-C3HC4                  | Nuclear                            | Other                           |
-| g8100.t1   | 1.6e-54        | Agrilus planipennis                                  | Inositol_P, MKLP1_Arf_bdg | Nuclear                            | Other                           |
-| g5927.t1   | 9.8e-25        | Capitella teleta                                     | -                         | Nuclear                            | Other                           |
-| g10513.t1  | 5.5e-42        | Malassezia globosa (strain ATCC MYA-4612 / CBS 7966) | -                         | Nuclear                            | Other                           |
+| g15484.t1  | 0.0        | Coptotermes formosanus                               | Vps51                     | Nuclear                            | Other                           |
+| g7861.t1   | 2e-71        | Penicillium italicum                                 | SNF2-rel_dom, HARP        | Nuclear                            | Other                           |
+| g11806.t1  | 3e-46        | Malassezia globosa (strain ATCC MYA-4612 / CBS 7966) | -                         | Nuclear                            | Other                           |
+| g11960.t1  | 6e-98       | Eumeta variegata                                     | zf-C3HC4                  | Nuclear                            | Other                           |
+| g8100.t1   | 3e-46        | Agrilus planipennis                                  | Inositol_P, MKLP1_Arf_bdg | Nuclear                            | Other                           |
+| g5927.t1   | 1e-18        | Capitella teleta                                     | -                         | Nuclear                            | Other                           |
+| g10513.t1  | 7e-22        | Malassezia globosa (strain ATCC MYA-4612 / CBS 7966) | -                         | Nuclear                            | Other                           |

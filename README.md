@@ -32,3 +32,9 @@ beta-lactamase in the CTX-M family and TEM family, respectively.
 > * K-mer profile
 > * Assembling genome
 > * Genome Annotation
+
+## [Project 4. Tardigrades: from genestealers to space marines.](https://github.com/LiliiaBgdnv/Bioinformatics-Workshop/blob/Progect_4/README.md)
+**Skills:**
+> * gene prediction
+> * functional annotation
+> * protein localization

@@ -1,40 +1,71 @@
-# Bioinformatics-Workshop
+# Progect 6. RNA-seq. Baking Bread.
 
-## [Progect 1. What causes antibiotic resistance?”. Alignment to reference, variant calling.](https://github.com/LiliiaBgdnv/Bioinformatics-Workshop/tree/Project_1)
-The sequencing data were analyzed and the mutations responsible for giving E. coli antibiotic resistance properties were found. 
+New bioinformatics skills covered: splice-junction aware alignment,
+guided transcript assembly, differential expression analysis
 
-**Skills:**
-> * FastQC
-> * Trimmimatic
-> * Aligning sequences to reference
-> * Variant calling
-> * SNP annotation
+## Step 1. Download data.
+```ruby
+wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR941/SRR941816/SRR941816.fastq.gz
+wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR941/SRR941817/SRR941817.fastq.gz
+wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR941/SRR941818/SRR941818.fastq.gz
+wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR941/SRR941819/SRR941819.fastq.gz
+```
 
-## [Progect 2. Why did I get the flu?](https://github.com/LiliiaBgdnv/Bioinformatics-Workshop/tree/Progect-2)
- In this work we analyze sequencing data from a person who was infected with the human influenza virus H3N2.
-Afterwards, we identified the mutation that resulted in an amino acid substitution in a protein known as the epitope, which is recognized by
-antibodies. Therefore, SNP was found at position 307, epitope D. Proline was switched out for serine as a result of
-the mutation (P103S), which could have led to breakthrough infection.
+As a reference genome we will use Saccharomyces cerevisiae:
+```ruby 
+wget http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz
+wget http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.gff.gz
+```
 
-**Skills:**
-> * Deep sequence data
-> * awk one-liners
+## Step 2. Analysis.
 
-## [Project 3. "E. coli outbreak investigation". De novo assembly and annotation of bacterial genomes.](https://github.com/LiliiaBgdnv/Bioinformatics-Workshop/tree/Progect_3)
-In this paper, we studied how E.coli could lead to an epidemic in Germany in 2011 that caused dozens
-of deaths. For this purpose we have taken the steps of assembling the genome of the E.coli X strain,
-comparing it to another E.coli strain, determining which genes our strain has acquired and how it became
-pathogenic. During the work we found out that strain E.coli X acquired the genes stxB and stxA from the
-phage, which led to the ability to secrete shiga toxin. We also found the bla_1 and bla_2 genes encoding
-beta-lactamase in the CTX-M family and TEM family, respectively.
+Install [hisat2](https://daehwankimlab.github.io/hisat2/)
+```ruby 
+git clone https://github.com/DaehwanKimLab/hisat2.git
+cd hisat2
+make
+```
 
-**Skills:**
-> * K-mer profile
-> * Assembling genome
-> * Genome Annotation
+build genome index:
+```ruby
+hisat2-build GCF_000146045.2_R64_genomic.fna GCF_000146045.2_R64_genomic
 
-## [Project 4. Tardigrades: from genestealers to space marines.](https://github.com/LiliiaBgdnv/Bioinformatics-Workshop/blob/Progect_4/README.md)
-**Skills:**
-> * gene prediction
-> * functional annotation
-> * protein localization
+./hisat2/hisat2 -p 2 -x GCF_000146045.2_R64_genomic -U SRR941816.fastq | samtools sort > out16.bam
+./hisat2/hisat2 -p 2 -x GCF_000146045.2_R64_genomic -U SRR941817.fastq | samtools sort > out17.bam
+./hisat2/hisat2 -p 2 -x GCF_000146045.2_R64_genomic -U SRR941818.fastq | samtools sort > out18.bam
+./hisat2/hisat2 -p 2 -x GCF_000146045.2_R64_genomic -U SRR941819.fastq | samtools sort > out19.bam
+```
+Quantifying with featureCounts, first of all convert the GFF file to GTF format:
+```ruby
+conda install gffread 
+gffread GCF_000146045.2_R64_genomic.gff -T -o GCF_000146045.2_R64_genomic.gft
+featureCounts -g gene_id -a GCF_000146045.2_R64_genomic.gft -o result out16.bam out17.bam out18.bam out19.baml
+cat result | cut -f 1,7-10 > simple_counts.txt
+```
+## Step 3. Find differentially expressed genes with Deseq2.
+Change in R script:
+```ruby
+#add:
+install.packages("https://cran.r-project.org/src/contrib/Archive/locfit/locfit_1.5-9.4.tar.gz", repos=NULL, type="source")
+library(locfit)
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("DESeq2")
+```
+
+calculate metrics:
+```ruby
+cat simple_counts.txt | R -f deseq2.r
+cat norm-matrix-deseq2.txt | R -f draw-heatmap.r
+head -n 50 result.txt | cut -f 1 | cut -d "-" -f 2 > genes.txt
+```
+
+## Step 4.  [Result Interpretation](http://www.yeastgenome.org/cgi-bin/GO/goSlimMapper.pl).
+
+For our top 50 differentially expressed genes:
+- in step 1 press “Choose file” and upload genes.txt 
+- in step 2, select “Yeast GO-Slim: Process”
+- in step 3, make sure “SELECT ALL TERMS” is highlighted. Press “Search”
+- Try to interpret these [results](https://gotermfinder.yeastgenome.org/mapper_genes_1456146_slimTerms.html)
+

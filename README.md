@@ -39,7 +39,7 @@ Quantifying with featureCounts, first of all convert the GFF file to GTF format:
 ```ruby
 conda install gffread 
 gffread GCF_000146045.2_R64_genomic.gff -T -o GCF_000146045.2_R64_genomic.gft
-featureCounts -g gene_id -a GCF_000146045.2_R64_genomic.gft -o result out16.bam out17.bam out18.bam out19.baml
+featureCounts -g gene_id -a GCF_000146045.2_R64_genomic.gft -o result out16.bam out17.bam out18.bam out19.bam
 cat result | cut -f 1,7-10 > simple_counts.txt
 ```
 ## Step 3. Find differentially expressed genes with Deseq2.

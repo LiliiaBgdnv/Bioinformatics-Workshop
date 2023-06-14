@@ -84,7 +84,7 @@ gzip -dk amp_res_2.fastq.gz
 ```ruby
 fastqc -o . amp_res_1.fastq amp_res_2.fastq
 ```
-For each file we get a file with the extension `.html`. Check them out.![photo_2022-10-25_15-16-04.jpg]
+For each file we get a file with the extension `.html`. Check them out. 
 
 ## ▶The fourth step.  Filtering the reads.
 
@@ -130,7 +130,7 @@ less amp_res_2_trimmed.fastq | wc -l
 ```
 In each file there are `1785036` lines, if we divide the number of lines by 4 (which is how many lines are allocated per read), we get `446259` reads.
 
-###Repeat the fastqc analysis
+### Repeat the fastqc analysis
 ```ruby
 conda activate myenv_x86
 fastqc -o . amp_res_1_trimmed.fastq amp_res_2_trimmed.fastq
